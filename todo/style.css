@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#todo-app-wrapper {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+#todo-app-input input {
+    width: calc(100% - 40px);
+}
+#todo-app-list ul {
+    list-style: none;
+    margin-top: 30px;
+}
+#todo-app-list ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
