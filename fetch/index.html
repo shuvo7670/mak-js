@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <!-- Example Code Start-->
+    <div class="row" id="datarow">
+      
+    </div>
+    <!-- Example Code End -->
+     <script>
+        var allData = ``;
+        const imageData = [];
+        function loadData() {
+            fetch('https://wpdev.test/wp-json/wp/v2/posts').then( (response) => {
+                return response.json();
+            } ).then( (data) => {
+                console.log(data);
+                data.map( (item) => {
+                    const attachment_id = item.featured_media;
+                    if( attachment_id != 0 ) {
+                        imageData.push(attachment_id);
+                    }
+                    allData = allData + `
+                        <div class="col-sm-6">
+                            <div class="card">
+                            <div class="card-body">
+                                <div id="showImage${attachment_id}" data-id="${attachment_id}"></div>
+                                <h5 class="card-title">${item.title.rendered}</h5>
+                                <p class="card-text">${item.excerpt.rendered}</p>
+                                <a href="${item.link}" target="_blank" class="btn btn-primary">View More</a>
+                            </div>
+                            </div>
+                        </div>
+                    `;
+                } );
+                document.getElementById('datarow').innerHTML = allData;
+            } ).catch( (error) => {
+                console.log(error);
+            } );
+        }
+        loadData();
+
+        setTimeout(() => {
+            loadImageData();
+        }, 1000);
+        function loadImageData() {
+            imageData.map( (item) => {
+                fetch('https://wpdev.test/wp-json/wp/v2/media/'+item).then( (response) => {
+                    return response.json();
+                } ).then( (data) => {
+                    console.log(data);
+                    document.getElementById('showImage'+item).innerHTML = `<img src="${data.guid.rendered}" alt="${data.alt_text}" width="100%">`;
+                } ).catch( (error) => {
+                    console.log(error);
+                } );
+            } );
+        }
+    </script>
+  </body>
+</html>
