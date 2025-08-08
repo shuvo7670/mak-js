@@ -22,7 +22,6 @@
             fetch('https://wpdev.test/wp-json/wp/v2/posts').then( (response) => {
                 return response.json();
             } ).then( (data) => {
-                console.log(data);
                 data.map( (item) => {
                     const attachment_id = item.featured_media;
                     if( attachment_id != 0 ) {
@@ -56,7 +55,6 @@
                 fetch('https://wpdev.test/wp-json/wp/v2/media/'+item).then( (response) => {
                     return response.json();
                 } ).then( (data) => {
-                    console.log(data);
                     document.getElementById('showImage'+item).innerHTML = `<img src="${data.guid.rendered}" alt="${data.alt_text}" width="100%">`;
                 } ).catch( (error) => {
                     console.log(error);
