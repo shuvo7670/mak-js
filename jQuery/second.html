@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #animateMe {
+            width: 100px;
+            height: 100px;
+            background-color: #ddd;
+            margin-top: 10px;
+            position: absolute;
+            left: 10px;
+        }
+        #animateWrapper {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <button id="slideToggleBtn">Slide Toggle</button>
+    <div id="panel">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+    </div>
+    <button id="clickToAnimate">Click to Animate</button>
+    <button id="stopBtn">Stop</button>
+    <div id="animateWrapper">
+        <div id="animateMe"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="animate.js"></script>
+</body>
+</html>
